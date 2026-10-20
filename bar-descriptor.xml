@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <qnx xmlns="http://www.qnx.com/schemas/application/1.0">
-  <id>com.ffworks.classic.native</id>
-  <name>FFWorks Classic</name>
-  <versionNumber>0.1.0</versionNumber>
-  <buildId>1</buildId>
-  <description>Native FFWorks client for BlackBerry 10</description>
-  <author>FFWorks Classic Development</author>
-  <initialWindow>
-    <autoOrients>false</autoOrients>
-    <systemChrome>none</systemChrome>
-    <transparent>false</transparent>
-  </initialWindow>
-  <asset path="assets">assets</asset>
-  <configuration name="Device-Release">
-    <entryPointType>Qnx/Cascades</entryPointType>
-    <platformArchitecture>armle-v7</platformArchitecture>
-    <asset path="arm/o.le-v7/FFWorksClassic.so" entry="true" type="Qnx/Elf">FFWorksClassic.so</asset>
-  </configuration>
-  <permission system="true">run_native</permission>
-  <permission>access_internet</permission>
-  <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
+    <id>com.ffworks.classic.native</id>
+    <name>FFWorks Classic</name>
+    <versionNumber>0.1.1</versionNumber>
+    <buildId>2</buildId>
+    <description>Native FFWorks client for BlackBerry 10</description>
+    <author>FFWorks Classic Development</author>
+    <initialWindow>
+        <autoOrients>false</autoOrients>
+        <systemChrome>none</systemChrome>
+    </initialWindow>
+    <configuration name="Device-Debug">
+        <platformArchitecture>armle-v7</platformArchitecture>
+        <asset path="build/cmake/arm/o.le-v7-g/FFWorksClassic" entry="true" type="Qnx/Elf">FFWorksClassic</asset>
+    </configuration>
+    <asset path="assets">assets</asset>
+    <permission system="true">run_native</permission>
+    <permission>access_internet</permission>
+    <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
 </qnx>
