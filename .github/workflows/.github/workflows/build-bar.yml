@@ -1,0 +1,28 @@
+name: Build FFWorks BlackBerry BAR
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  bar:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+      - name: Check project with BB10 toolchain
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/src:ro" ghcr.io/xiazy/blackberry10-toolchain:latest bb10-check-project /src
+      - name: Build unsigned BAR
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/src" ghcr.io/xiazy/blackberry10-toolchain:latest bb10-build /src
+      - name: Display BAR files
+        run: find build -type f -name '*.bar' -print
+      - name: Upload BAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: FFWorks-Classic-Unsigned-BAR
+          path: build/**/*.bar
+          if-no-files-found: error
